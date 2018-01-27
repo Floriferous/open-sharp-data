@@ -11,12 +11,18 @@ const RadioButton = Radio.Button;
 const RadioGroup = Radio.Group;
 
 const MIN = 50;
-const MAX = 500;
+const MAX = 1000;
+const STEP = 50;
 
 const setComparison = debounce(func => func(), 500);
 
 const RadiusPicker = ({
-  comparison, setChartComparison, radius, setRadius, setComparisonData,
+  comparison,
+  setChartComparison,
+  radius,
+  setRadius,
+  setComparisonData,
+  neighborsExist,
 }) => (
   <div className="radius-picker">
     <RadioGroup onChange={e => setChartComparison(e.target.value)} value={comparison}>
@@ -28,7 +34,7 @@ const RadiusPicker = ({
         <Slider
           min={MIN}
           max={MAX}
-          step={50}
+          step={STEP}
           value={radius}
           onChange={(value) => {
             setRadius(value);
@@ -54,6 +60,9 @@ const RadiusPicker = ({
 RadiusPicker.propTypes = {};
 
 export default connect(
-  ({ chart: { comparison, radius } }) => ({ comparison, radius }),
+  ({ chart: { comparison, radius } }) => ({
+    comparison,
+    radius,
+  }),
   chartActions,
 )(RadiusPicker);

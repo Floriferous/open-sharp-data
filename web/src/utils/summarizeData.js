@@ -65,21 +65,25 @@ const summarizeData = (data) => {
   const cleanData = groupDataInObject(data);
   const columnsToSummarize = [...columnKeys, 'distance'];
 
-  const summary = columnsToSummarize.map((columnLabel) => {
+  const summary = columnsToSummarize.reduce((accumulator, columnLabel) => {
     const {
       sum, count, min, max,
     } = getSum(cleanData, columnLabel);
     const average = sum / count || 0;
 
     return {
-      sum,
-      count,
-      min,
-      max,
-      average,
-      label: columnLabel,
+      ...accumulator,
+      [columnLabel]: {
+        sum,
+        count,
+        min,
+        max,
+        average,
+        label:
+          (importantColumns[columnLabel] && importantColumns[columnLabel].label) || columnLabel,
+      },
     };
-  });
+  }, {});
 
   return summary;
 };

@@ -20,7 +20,7 @@ const chart = (state = initialState, action) => {
     case SET_RADIUS:
       return { ...state, radius: action.radius };
     case SET_COMPARISON_DATA:
-      return { ...state, comparisonData: action.data };
+      return { ...state, comparisonData: action.data, nearbyCount: action.count };
     default:
       return state;
   }

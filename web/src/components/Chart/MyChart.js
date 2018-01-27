@@ -11,7 +11,7 @@ const AverageChart = ({
 }) => {
   const comparisonData = optionalComparisonData || importantColumns;
   const columns = Object.keys(comparisonData);
-  const labels = columns.map(column => importantColumns[column].label);
+  const labels = columns.map(column => comparisonData[column].label);
   const dataPoints = columns
     .map((column) => {
       const dataValue = Number.parseFloat(data[column]);

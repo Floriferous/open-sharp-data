@@ -1,3 +1,5 @@
+import { message } from 'antd';
+
 import {
   SET_CHART_TYPE,
   SET_CHART_COMPARISON,
@@ -13,17 +15,30 @@ export const setRadius = radius => ({ type: SET_RADIUS, radius });
 
 export const setComparisonData = () => (dispatch, getState) => {
   const { chart: { radius }, file: { data: { data } } } = getState();
-  console.log('settings comparison data:', data);
 
   const lat = Number.parseFloat(data['S0_INFO.coords:lat']);
   const lon = Number.parseFloat(data['S0_INFO.coords:lon']);
 
   if (radius && lat && lon) {
     getDistanceToOthers(lat, lon).then((dataWithDistance) => {
-      const nearbyFarmers = dataWithDistance.slice(1).filter(row => row.distance < radius);
+      const distances = dataWithDistance
+        .filter(point => !Number.isNaN(point.distance) && !!point.distance)
+        .map(point => point.distance);
+      const nearbyFarmers = dataWithDistance.slice(1).filter(row => row.distance < radius * 1000);
+      const nearbyFarmersCount = nearbyFarmers.length;
       const summarizedData = summarizeData([dataWithDistance[0], ...nearbyFarmers]);
 
-      dispatch({ type: SET_COMPARISON_DATA, data: summarizedData });
+      if (nearbyFarmersCount === 0) {
+        message.error(`No farmers nearby in a ${radius} km radius...`);
+      } else {
+        message.success(`Comparing with ${nearbyFarmersCount} nearby`);
+      }
+
+      dispatch({
+        type: SET_COMPARISON_DATA,
+        data: summarizedData,
+        count: nearbyFarmersCount,
+      });
     });
   }
 };
