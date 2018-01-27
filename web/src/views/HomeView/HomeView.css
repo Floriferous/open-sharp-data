@@ -1,0 +1,16 @@
+.home-view {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.home-view .buttons {
+  display: flex;
+}
+
+.home-view .buttons button:first-of-type {
+  margin-right: 16px;
+}
