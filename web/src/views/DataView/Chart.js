@@ -1,20 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import { HorizontalBar } from 'react-chartjs-2';
 import importantColumns from '../../data/dataColumns';
+import { NORMALIZED } from '../../reducers/chart';
 
-const AverageChart = ({ data }) => {
+const AverageChart = ({ data, type }) => {
   const columns = Object.keys(importantColumns);
   const labels = columns.map(column => importantColumns[column].label);
   const dataPoints = columns
     .map((column) => {
       const dataValue = Number.parseFloat(data[column]);
-      console.log(dataValue);
       if (Number.isNaN(dataValue)) {
         return 0;
       }
-      return dataValue - importantColumns[column].average;
+      const { average } = importantColumns[column];
+      const delta = dataValue - average;
+      return type === NORMALIZED ? delta / average : delta;
     })
     .map(value => Math.round(value * 100) / 100);
 
@@ -48,10 +51,9 @@ const AverageChart = ({ data }) => {
       },
     },
   };
-  console.log(chartData);
   return <HorizontalBar data={chartData} width={1000} height={500} options={options} />;
 };
 
 AverageChart.propTypes = {};
 
-export default AverageChart;
+export default connect(({ chart: { type } }) => ({ type }))(AverageChart);

@@ -5,3 +5,9 @@
   align-items: center;
   width: 100%;
 }
+
+.data-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
