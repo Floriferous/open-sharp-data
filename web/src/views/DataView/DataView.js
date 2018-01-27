@@ -10,7 +10,6 @@ const DataView = ({ data }) => (
   <section className="data-view">
     <h1>Explore the data</h1>
     {data && data.data && <DataInfo data={data.data} />}
-    <DataList />
   </section>
 );
 

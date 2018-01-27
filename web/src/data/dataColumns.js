@@ -1,7 +1,8 @@
 const importantColumns = {
   'S4_EC_01._scoring.score_final': {
     average: 11.57190635451505,
-    label: 'Access to local market (for selling any crops or livestock)',
+    // label: 'Access to local market (for selling any crops or livestock)',
+    label: 'Access to local market',
     min: 0,
     max: 0,
     stdDev: 0,
@@ -291,8 +292,9 @@ const importantColumns = {
   },
   'S4_PSP_14._scoring.score_final': {
     average: 13.55075348308232,
-    label:
-      'Access to information on climate change, adaptation practices, and meteorological forecasts',
+    // label:
+    //   'Access to information on climate change, adaptation practices, and meteorological forecasts',
+    label: 'Access to information',
     min: 0,
     max: 0,
     stdDev: 0,

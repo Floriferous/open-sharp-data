@@ -6,13 +6,13 @@ import { HorizontalBar } from 'react-chartjs-2';
 import importantColumns from '../../data/dataColumns';
 import { NORMALIZED } from '../../reducers/chart';
 
-const AverageChart = ({ data, type }) => {
+const AverageChart = ({ data, type, className }) => {
   const columns = Object.keys(importantColumns);
   const labels = columns.map(column => importantColumns[column].label);
   const dataPoints = columns
     .map((column) => {
       const dataValue = Number.parseFloat(data[column]);
-      if (Number.isNaN(dataValue)) {
+      if (Number.isNaN(dataValue) || dataValue === 0) {
         return 0;
       }
       const { average } = importantColumns[column];
@@ -43,15 +43,22 @@ const AverageChart = ({ data, type }) => {
   };
 
   const options = {
-    tooltips: {
-      callbacks: {
-        label(tooltipItem) {
-          return tooltipItem.yLabel;
-        },
-      },
+    // tooltips: {
+    //   callbacks: {
+    //     label(tooltipItem) {
+    //       return tooltipItem.yLabel;
+    //     },
+    //   },
+    // },
+    legend: {
+      display: false,
     },
   };
-  return <HorizontalBar data={chartData} width={1000} height={500} options={options} />;
+  return (
+    <div className={className}>
+      <HorizontalBar data={chartData} width={1000} height={500} options={options} />
+    </div>
+  );
 };
 
 AverageChart.propTypes = {};
