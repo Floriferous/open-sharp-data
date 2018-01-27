@@ -1,53 +1,40 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Upload, message, Button, Icon } from 'antd';
+import { connect } from 'react-redux';
 
-import { handleCSV } from '../utils/parseCSV';
+import * as fileActions from '../actions/setFile';
+import { UPLOAD_STATUS_LOADING } from '../reducers/file';
 
-class Uploader extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { loading: false };
-  }
+const handleUpload = (file) => {
+  const { setFile } = this.props;
 
-  handleUpload = (file) => {
-    const { handleData } = this.props;
-    this.setState({ loading: true });
+  setFile(file)
+    .then((data) => {
+      message.success('File uploaded successfully');
+      return data;
+    })
+    .catch((error) => {
+      message.error('File upload failed...');
+      console.log('Upload error:', error);
+    });
 
-    handleCSV(file)
-      .then((data) => {
-        this.setState({ loading: false });
-        message.success('File uploaded successfully');
-        return data;
-      })
-      .then(handleData)
-      .catch((error) => {
-        this.setState({ loading: false });
-        message.error('File upload failed...');
-        console.log('Upload error:', error);
-      });
-
-    return false;
-  };
-
-  render() {
-    const { text } = this.props;
-    const { loading } = this.state;
-
-    return (
-      <Upload accept=".csv" beforeUpload={this.handleUpload} disabled={loading}>
-        <Button>
-          <Icon type="upload" /> {text}
-        </Button>
-      </Upload>
-    );
-  }
-}
-
-Uploader.propTypes = {
-  handleData: PropTypes.func.isRequired,
-  text: PropTypes.string.isRequired,
+  return false;
 };
 
-export default Uploader;
+const Uploader = ({ text, status }) => (
+  <Upload accept=".csv" beforeUpload={handleUpload} disabled={status === UPLOAD_STATUS_LOADING}>
+    <Button>
+      <Icon type="upload" /> {text}
+    </Button>
+  </Upload>
+);
+
+Uploader.propTypes = {
+  setFile: PropTypes.func.isRequired,
+  text: PropTypes.string.isRequired,
+  status: PropTypes.bool.isRequired,
+};
+
+export default connect(({ file: { status } }) => ({ fileStatus: status }), fileActions)(Uploader);

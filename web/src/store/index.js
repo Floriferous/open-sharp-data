@@ -8,5 +8,7 @@ const configureStore = () => {
   const initialStore = {};
   const middleWares = [thunk];
 
-  createStore(rootReducer, initialStore, applyMiddleware(...middleWares));
+  return createStore(rootReducer, initialStore, applyMiddleware(...middleWares));
 };
+
+export default configureStore;
