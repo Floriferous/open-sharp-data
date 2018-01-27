@@ -1,0 +1,7 @@
+.data-info {
+  padding: 64px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
