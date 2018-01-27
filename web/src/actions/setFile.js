@@ -15,7 +15,6 @@ export const setFile = file => (dispatch) => {
   return handleCSV(file)
     .then((data) => {
       dispatch({ type: 'SET_FILE', data });
-      return data;
     })
     .catch((error) => {
       dispatch(setUploadStatus(UPLOAD_STATUS_ERROR, error));
