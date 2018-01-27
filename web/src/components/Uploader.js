@@ -19,7 +19,6 @@ class Uploader extends Component {
       .then((data) => {
         this.setState({ loading: false });
         message.success('File uploaded successfully');
-        console.log('Done parsing data!', data);
         return data;
       })
       .then(handleData)
@@ -28,6 +27,7 @@ class Uploader extends Component {
         message.error('File upload failed...');
         console.log('Upload error:', error);
       });
+
     return false;
   };
 
@@ -46,7 +46,7 @@ class Uploader extends Component {
 }
 
 Uploader.propTypes = {
-  callback: PropTypes.func.isRequired,
+  handleData: PropTypes.func.isRequired,
   text: PropTypes.string.isRequired,
 };
 
