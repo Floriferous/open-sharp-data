@@ -1,9 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const DataInfo = ({ data: { 'S0_INFO.date': date } }) => (
+import Chart from './Chart';
+
+const DataInfo = ({ data }) => (
   <div className="data-info">
-    <h1>Survey from {date}</h1>
+    <h2>Your survey compared to the rest</h2>
+    <Chart data={data} />
   </div>
 );
 
