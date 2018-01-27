@@ -7,9 +7,7 @@ import { connect } from 'react-redux';
 import * as fileActions from '../actions/setFile';
 import { UPLOAD_STATUS_LOADING } from '../reducers/file';
 
-const handleUpload = (file) => {
-  const { setFile } = this.props;
-
+const handleUpload = (file, setFile) => {
   setFile(file)
     .then((data) => {
       message.success('File uploaded successfully');
@@ -23,8 +21,12 @@ const handleUpload = (file) => {
   return false;
 };
 
-const Uploader = ({ text, status }) => (
-  <Upload accept=".csv" beforeUpload={handleUpload} disabled={status === UPLOAD_STATUS_LOADING}>
+const Uploader = ({ text, fileStatus, setFile }) => (
+  <Upload
+    accept=".csv"
+    beforeUpload={file => handleUpload(file, setFile)}
+    disabled={fileStatus === UPLOAD_STATUS_LOADING}
+  >
     <Button>
       <Icon type="upload" /> {text}
     </Button>
@@ -34,7 +36,11 @@ const Uploader = ({ text, status }) => (
 Uploader.propTypes = {
   setFile: PropTypes.func.isRequired,
   text: PropTypes.string.isRequired,
-  status: PropTypes.bool.isRequired,
+  fileStatus: PropTypes.bool.isRequired,
 };
 
-export default connect(({ file: { status } }) => ({ fileStatus: status }), fileActions)(Uploader);
+export default connect((store) => {
+  const { file: { status } } = store;
+
+  return { fileStatus: status };
+}, fileActions)(Uploader);

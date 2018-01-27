@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 
 import HomeView from './views/HomeView';
 import DataView from './views/DataView';
-import createStore from './store';
+import createStore, { history } from './store';
 
 export const HOME_VIEW_LINK = '/';
 export const DATA_VIEW_LINK = '/data';
@@ -14,7 +14,7 @@ const store = createStore();
 
 const App = () => (
   <Provider store={store}>
-    <BrowserRouter>
+    <BrowserRouter history={history}>
       <Switch>
         <Route exact path={HOME_VIEW_LINK} component={HomeView} />
         <Route exact path={DATA_VIEW_LINK} component={DataView} />
