@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Chart from './Chart';
-import ChartController from './ChartController';
+import Chart from '../../components/Chart';
 import MyMap from '../../components/MyMap';
 
 const DataInfo = ({ data }) => (
@@ -13,7 +12,6 @@ const DataInfo = ({ data }) => (
     />
     <div className="chart-box">
       <h2>Your survey compared to the rest</h2>
-      <ChartController />
       <Chart data={data} className="chart" />
     </div>
   </div>

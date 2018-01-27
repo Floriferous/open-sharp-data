@@ -16,9 +16,10 @@ function readTextFile(filePath, callback) {
   rawFile.send(null);
 }
 
-export const getAverages = () =>
+const getCsvData = file =>
   new Promise((resolve, reject) => {
-    readTextFile(csvFile, (csv) => {
+    console.log('getCsvData() file:', file);
+    readTextFile(file || csvFile, (csv) => {
       Papa.parse(csv, {
         complete: (results) => {
           resolve(results);
@@ -29,3 +30,5 @@ export const getAverages = () =>
       });
     });
   });
+
+export default getCsvData;

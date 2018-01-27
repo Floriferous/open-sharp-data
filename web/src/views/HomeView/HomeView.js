@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 
 import Actions from './Actions';
 import './HomeView.css';
+import getDistanceToOthers from '../../utils/getDistanceToOthers';
+
+// getDistanceToOthers(9.1308075, 26.9844013);
 
 const HomeView = props => (
   <section className="home-view">

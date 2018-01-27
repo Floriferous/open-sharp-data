@@ -1,27 +1,47 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
-import { Button } from 'antd';
-import { Link } from 'react-router-dom';
+import { Button, message } from 'antd';
+import { withRouter } from 'react-router';
 
-import { DATA_VIEW_LINK } from '../../App';
 import Uploader from '../../components/Uploader';
+import * as fileActions from '../../actions/setFile';
+import getCsvData from '../../utils/getCsvData';
+import { DATA_VIEW_LINK } from '../../App';
 
-const Actions = props => (
+const sampleData = require('../../data/sample_survey2.csv');
+
+const handleFileSuccess = (push) => {
+  message.success('File loaded successfully');
+  push(DATA_VIEW_LINK);
+};
+
+const handleFileError = (error) => {
+  message.error('File loading failed...');
+  console.log('Upload error:', error);
+};
+
+const handleClick = (setFile, push) =>
+  getCsvData(sampleData)
+    .then(setFile)
+    .then(() => handleFileSuccess(push))
+    .catch(handleFileError);
+
+const Actions = ({ setFile, history: { push } }) => (
   <div className="buttons">
     <Uploader
-      handleData={(data) => {
-        console.log('Done! ', data);
-      }}
+      handleSuccess={() => handleFileSuccess(push)}
+      handleError={handleFileError}
       text="Click to upload survey"
     />
     <span className="or">- or -</span>
-    <Link to={DATA_VIEW_LINK}>
-      <Button type="primary">Explore SHARP data</Button>
-    </Link>
+    <Button type="primary" onClick={() => handleClick(setFile, push)}>
+      Set sample data
+    </Button>
   </div>
 );
 
 Actions.propTypes = {};
 
-export default Actions;
+export default connect(null, fileActions)(withRouter(Actions));

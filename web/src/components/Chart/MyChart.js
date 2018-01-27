@@ -6,8 +6,11 @@ import { HorizontalBar } from 'react-chartjs-2';
 import importantColumns from '../../data/dataColumns';
 import { NORMALIZED } from '../../reducers/chart';
 
-const AverageChart = ({ data, type, className }) => {
-  const columns = Object.keys(importantColumns);
+const AverageChart = ({
+  data, type, className, optionalComparisonData,
+}) => {
+  const comparisonData = optionalComparisonData || importantColumns;
+  const columns = Object.keys(comparisonData);
   const labels = columns.map(column => importantColumns[column].label);
   const dataPoints = columns
     .map((column) => {
@@ -15,7 +18,7 @@ const AverageChart = ({ data, type, className }) => {
       if (Number.isNaN(dataValue) || dataValue === 0) {
         return 0;
       }
-      const { average } = importantColumns[column];
+      const { average } = comparisonData[column];
       const delta = dataValue - average;
       return type === NORMALIZED ? delta / average : delta;
     })

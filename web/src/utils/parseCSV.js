@@ -13,7 +13,8 @@ const validateData = (data) => {
   }
 };
 
-const setupData = (data) => {
+export const setupData = (data) => {
+  console.log('setting up data: ', data);
   validateData(data);
 
   return data[0].reduce(
@@ -22,13 +23,16 @@ const setupData = (data) => {
   );
 };
 
+export const structureData = (data) => {
+  const structuredData = setupData(data.data);
+  return { ...data, data: structuredData };
+};
+
 export const handleCSV = file =>
   new Promise((resolve, reject) => {
     Papa.parse(file, {
       complete: (results) => {
-        const structuredData = setupData(results.data);
-
-        resolve({ ...results, data: structuredData });
+        resolve(structureData(results));
       },
       error: (error) => {
         reject(error);
