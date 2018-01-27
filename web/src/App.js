@@ -1,21 +1,20 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { Switch, Route } from 'react-router';
 
 import HomeView from './views/HomeView';
 import DataView from './views/DataView';
 
-class App extends Component {
-  render() {
-    return (
-      <BrowserRouter>
-        <Switch>
-          <Route exact path="/" component={HomeView} />
-          <Route exact path="/data" component={DataView} />
-        </Switch>
-      </BrowserRouter>
-    );
-  }
-}
+export const HOME_VIEW_LINK = '/';
+export const DATA_VIEW_LINK = '/data';
+
+const App = () => (
+  <BrowserRouter>
+    <Switch>
+      <Route exact path={HOME_VIEW_LINK} component={HomeView} />
+      <Route exact path={DATA_VIEW_LINK} component={DataView} />
+    </Switch>
+  </BrowserRouter>
+);
 
 export default App;
