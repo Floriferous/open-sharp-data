@@ -9,8 +9,9 @@
 
 .home-view .buttons {
   display: flex;
+  align-items: center;
 }
 
-.home-view .buttons button:first-of-type {
-  margin-right: 16px;
+.home-view .buttons .or {
+  margin: 0 16px;
 }
