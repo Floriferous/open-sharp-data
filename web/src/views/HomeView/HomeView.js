@@ -9,7 +9,7 @@ import getDistanceToOthers from '../../utils/getDistanceToOthers';
 
 const HomeView = props => (
   <section className="home-view">
-    <h1>Welcome to Open SHARP Data</h1>
+    <h2>Welcome to Open SHARP Data</h2>
     <p>This is a tool to let you get more insights into the SHARP dataset</p>
     <Actions />
   </section>

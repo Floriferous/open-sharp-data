@@ -4,12 +4,15 @@ import { connect } from 'react-redux';
 
 import { HorizontalBar } from 'react-chartjs-2';
 import importantColumns from '../../data/dataColumns';
-import { NORMALIZED } from '../../reducers/chart';
+import { NORMALIZED, ALL } from '../../reducers/chart';
 
 const AverageChart = ({
-  data, type, className, optionalComparisonData,
+  data, type, className, optionalComparisonData, comparison,
 }) => {
-  const comparisonData = optionalComparisonData || importantColumns;
+  let comparisonData = importantColumns;
+  if (comparison !== ALL && !!optionalComparisonData) {
+    comparisonData = optionalComparisonData;
+  }
   const columns = Object.keys(comparisonData);
   const labels = columns.map(column => comparisonData[column].label);
   const dataPoints = columns
@@ -66,4 +69,4 @@ const AverageChart = ({
 
 AverageChart.propTypes = {};
 
-export default connect(({ chart: { type } }) => ({ type }))(AverageChart);
+export default connect(({ chart: { type, comparison } }) => ({ type, comparison }))(AverageChart);
