@@ -14,7 +14,6 @@ const validateData = (data) => {
 };
 
 export const setupData = (data) => {
-  console.log('setting up data: ', data);
   validateData(data);
 
   return data[0].reduce(

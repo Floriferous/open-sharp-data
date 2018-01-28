@@ -1,9 +1,6 @@
 import { MAIN_SET } from '../reducers/chart';
 
-const getImportantColumns = (dataSet = MAIN_SET) => {
-  console.log('getting important columns: ', dataSet);
-  return dataSet === MAIN_SET ? MAIN_SET_DATA : UGANDA_SET_DATA;
-};
+const getImportantColumns = (dataSet = MAIN_SET) => (dataSet === MAIN_SET ? MAIN_SET_DATA : UGANDA_SET_DATA);
 export default getImportantColumns;
 
 const UGANDA_SET_DATA = {

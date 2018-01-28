@@ -11,7 +11,6 @@ export default class DataList extends Component {
     const { data, averages } = this.state;
 
     if (data) {
-      console.log('Averages:', averages);
       return <div>Done!</div>;
     }
 

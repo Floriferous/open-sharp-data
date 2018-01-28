@@ -14,14 +14,19 @@ const groupDataInObject = (data) => {
   const allKeys = [...columnKeys, 'S0_INFO.coords:lat', 'S0_INFO.coords:lon'];
 
   allKeys.forEach((key) => {
-    indexes.push(columnLabels.findIndex(columnKey => columnKey === key));
+    const index = columnLabels.findIndex(columnKey => columnKey === key);
+
+    if (index) {
+      indexes.push(index);
+    }
   });
 
   indexes.forEach((importantColumnIndex) => {
+    const label = columnLabels[importantColumnIndex];
     data.slice(1).forEach((row, rowIndex) => {
-      cleanData[rowIndex - 1] = {
-        ...cleanData[rowIndex - 1],
-        [allKeys[importantColumnIndex]]: row[importantColumnIndex],
+      cleanData[rowIndex] = {
+        ...cleanData[rowIndex],
+        [label]: row[importantColumnIndex],
       };
     });
   });
@@ -47,8 +52,8 @@ const getSum = (data, key) => {
   return {
     sum,
     count,
-    min: Math.min(values),
-    max: Math.max(values),
+    min: Math.min(...values),
+    max: Math.max(...values),
   };
 };
 

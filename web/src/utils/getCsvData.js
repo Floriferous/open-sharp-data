@@ -1,8 +1,6 @@
 import Papa from 'papaparse';
-import { MAIN_SET } from '../reducers/chart';
 
 const mainCsvFile = require('../data/Sharp_Surveys_Data.csv');
-const ugandaCsvFile = require('../data/Uganda_survey_data.csv');
 
 function readTextFile(filePath, callback) {
   const rawFile = new XMLHttpRequest();
@@ -18,11 +16,9 @@ function readTextFile(filePath, callback) {
   rawFile.send(null);
 }
 
-const getCsvData = (file, dataSet) =>
+const getCsvData = file =>
   new Promise((resolve, reject) => {
-    console.log('getCsvData() file:', file);
-    const defaultFile = dataSet === MAIN_SET ? mainCsvFile : ugandaCsvFile;
-    console.log('defaultFile: ', defaultFile);
+    const defaultFile = mainCsvFile;
     readTextFile(file || defaultFile, (csv) => {
       Papa.parse(csv, {
         complete: (results) => {

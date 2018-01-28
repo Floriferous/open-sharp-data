@@ -1,8 +1,8 @@
 import getCsvData from './getCsvData';
 import { calculateDistance } from './calculateDistance';
 
-const getDistanceToOthers = (latitude, longitude, dataSet, radius) =>
-  getCsvData(null, dataSet).then((data) => {
+const getDistanceToOthers = (latitude, longitude, radius) =>
+  getCsvData(null).then((data) => {
     if (data && data.data) {
       const start = new Date().getTime();
 
