@@ -5,6 +5,11 @@
   width: 100%;
 }
 
+.data-view .button {
+  margin: 16px;
+  align-self: flex-start;
+}
+
 .data-view h1 {
   margin-bottom: 16px;
 }

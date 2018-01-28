@@ -13,5 +13,9 @@
 }
 
 .home-view .buttons .or {
-  margin: 0 16px;
+  margin: 32px 16px;
+}
+
+.home-view ul {
+  margin: 0;
 }
