@@ -34,4 +34,9 @@
 
 .data-info .chart-box .chart {
   padding: 32px;
+  width: 100%;
+}
+
+.data-info .chart-box .chart-container {
+  width: 100%;
 }

@@ -52,10 +52,12 @@ const AverageChart = ({
     legend: {
       display: false,
     },
+    maintainAspectRatio: false,
+    responsive: true,
   };
   return (
     <div className={className}>
-      <HorizontalBar data={chartData} width={1000} height={500} options={options} />
+      <HorizontalBar data={chartData} height={600} options={options} />
     </div>
   );
 };

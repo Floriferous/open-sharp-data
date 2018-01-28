@@ -6,7 +6,7 @@ import ChartController from './ChartController';
 import MyChart from './MyChart';
 
 const chartActions = props => (
-  <div>
+  <div className="chart-container">
     <ChartController />
     <MyChart {...props} optionalComparisonData={props.comparisonData} />
   </div>
