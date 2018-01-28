@@ -29,8 +29,7 @@ const getDistanceToOthers = (latitude, longitude, dataSet, radius) =>
           return null;
         })
         .filter(dataPoint => !!dataPoint)
-        .sort((a, b) => a.distance - b.distance)
-        .slice(0, 20);
+        .sort((a, b) => a.distance - b.distance);
 
       const coordinates = dataWithDistances.map(column => ({
         lat: Number.parseFloat(column[latIndex]),
