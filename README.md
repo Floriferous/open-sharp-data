@@ -6,5 +6,5 @@ This is a tool to get more insights into FOA's SHARP surveys.
 
 * Pull the latest version from [here](http://www.fao.org/in-action/sharp/data/geography/en/) (go to > data, then simply click export)
 * Add the file to `web/src/data` with the name `Sharp_Surveys_Data.csv`
-* Call `web/src/data/generateNewSummary` from the web app and copy paste the results in `web/src/data/dataColumns`
+* Call `web/src/data/generateNewSummary` from the web app and copy paste the `console.log` results in `web/src/data/dataColumns` (this process sucks)
 * Update the Footer.js with the new upload date
