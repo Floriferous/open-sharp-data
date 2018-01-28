@@ -18,7 +18,9 @@ export default class ColumnListModal extends Component {
   render() {
     return (
       <div>
-        <Button onClick={this.showModal}>Show mandatory column list</Button>
+        <Button onClick={this.showModal} size="small">
+          Show mandatory column list
+        </Button>
         <Modal
           title="Basic Modal"
           visible={this.state.visible}

@@ -25,7 +25,7 @@ class Uploader extends Component {
         beforeUpload={file => this.handleUpload(file)}
         disabled={fileStatus === UPLOAD_STATUS_LOADING}
       >
-        <Button>
+        <Button size="large">
           <Icon type="upload" /> {text}
         </Button>
       </Upload>

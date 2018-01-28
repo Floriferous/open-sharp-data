@@ -36,7 +36,7 @@ const Actions = ({ setFile, history: { push } }) => (
       text="Click to upload survey"
     />
     <span className="or">- or -</span>
-    <Button type="primary" onClick={() => handleClick(setFile, push)}>
+    <Button type="primary" onClick={() => handleClick(setFile, push)} size="large">
       Set sample data
     </Button>
   </div>
