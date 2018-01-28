@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import { Modal, Button } from 'antd';
 
-import importantColumns from '../data/dataColumns';
+import getComparisonData from '../data/dataColumns';
 
 export default class ColumnListModal extends Component {
-  state = { visible: false };
+  constructor(props) {
+    super(props);
+    this.state = { visible: false };
+  }
+
   showModal = () => this.setState({ visible: true });
 
   handleOk = () => this.setState({ visible: false });
@@ -23,9 +27,9 @@ export default class ColumnListModal extends Component {
         >
           <ul>
             <li>Ideally 'S0_INFO.coords:lon' and 'S0_INFO.coords:lat' to display the map</li>
-            {Object.keys(importantColumns).map(colKey => (
+            {Object.keys(getComparisonData()).map(colKey => (
               <li key={colKey}>
-                <em>{colKey}</em>: {importantColumns[colKey].label}
+                <em>{colKey}</em>: {getComparisonData()[colKey].label}
               </li>
             ))}
           </ul>

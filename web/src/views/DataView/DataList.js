@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import importantColumns from '../../data/dataColumns';
-
 export default class DataList extends Component {
   constructor(props) {
     super(props);

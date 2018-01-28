@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { HorizontalBar } from 'react-chartjs-2';
-import importantColumns from '../../data/dataColumns';
+import getComparisonData from '../../data/dataColumns';
 import { NORMALIZED, ALL } from '../../reducers/chart';
 
 const AverageChart = ({
-  data, type, className, optionalComparisonData, comparison,
+  data, type, dataSet, className, optionalComparisonData, comparison,
 }) => {
-  let comparisonData = importantColumns;
+  let comparisonData = getComparisonData(dataSet);
   if (comparison !== ALL && !!optionalComparisonData) {
     comparisonData = optionalComparisonData;
   }
@@ -49,13 +49,6 @@ const AverageChart = ({
   };
 
   const options = {
-    // tooltips: {
-    //   callbacks: {
-    //     label(tooltipItem) {
-    //       return tooltipItem.yLabel;
-    //     },
-    //   },
-    // },
     legend: {
       display: false,
     },
@@ -69,4 +62,8 @@ const AverageChart = ({
 
 AverageChart.propTypes = {};
 
-export default connect(({ chart: { type, comparison } }) => ({ type, comparison }))(AverageChart);
+export default connect(({ chart: { type, comparison, dataSet } }) => ({
+  type,
+  comparison,
+  dataSet,
+}))(AverageChart);

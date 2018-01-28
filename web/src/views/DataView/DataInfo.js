@@ -6,7 +6,7 @@ import MyMap from '../../components/MyMap';
 
 const DataInfo = ({ data }) => (
   <div className="data-info">
-    <div className="chart-box">
+    <div className="chart-box card">
       <h2>Your survey compared to the rest</h2>
       <Chart data={data} className="chart" />
     </div>

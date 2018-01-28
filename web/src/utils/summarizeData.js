@@ -1,6 +1,6 @@
-import importantColumns from '../data/dataColumns';
+import getComparisonData from '../data/dataColumns';
 
-const columnKeys = Object.keys(importantColumns);
+const columnKeys = Object.keys(getComparisonData());
 
 const groupDataInObject = (data) => {
   console.log('groupDataInObject data:', data);
@@ -80,7 +80,8 @@ const summarizeData = (data) => {
         max,
         average,
         label:
-          (importantColumns[columnLabel] && importantColumns[columnLabel].label) || columnLabel,
+          (getComparisonData()[columnLabel] && getComparisonData()[columnLabel].label) ||
+          columnLabel,
       },
     };
   }, {});

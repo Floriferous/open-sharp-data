@@ -4,8 +4,8 @@ import { calculateDistance } from './calculateDistance';
 const LATITUDE_INDEX = 5;
 const LONGITUDE_INDEX = 5;
 
-const getDistanceToOthers = (latitude, longitude) =>
-  getCsvData().then((data) => {
+const getDistanceToOthers = (latitude, longitude, dataSet) =>
+  getCsvData(null, dataSet).then((data) => {
     if (data && data.data) {
       const start = new Date().getTime();
 

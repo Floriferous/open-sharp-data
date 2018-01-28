@@ -17,7 +17,7 @@ const DataView = ({ data }) => {
       <Button className="button">
         <Link to="/">Go Home</Link>
       </Button>
-      <h1>Explore the data</h1>
+      {/* <h1>Explore the data</h1> */}
       {data && data.data && <DataInfo data={data.data} />}
     </section>
   );
