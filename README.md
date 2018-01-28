@@ -1,6 +1,6 @@
 # Open SHARP Data
 
-This is a tool to get more insights into FOA's SHARP surveys.
+This is a tool to get more insights into FAO's SHARP surveys.
 
 ### To update the dataset
 

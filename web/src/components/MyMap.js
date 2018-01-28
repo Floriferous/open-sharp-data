@@ -12,7 +12,9 @@ const MyMap = ({ longitude, latitude, coordinates }) => (
       coordinates.length > 0 &&
       coordinates.map((coordinate, index) => (
         <Marker
-          key={index}
+          label={index + 1}
+          key={`${coordinate.lat}${coordinate.lng}`}
+          // opacity={0.5}
           position={coordinate}
           icon="http://maps.google.com/mapfiles/ms/icons/green-dot.png"
         />

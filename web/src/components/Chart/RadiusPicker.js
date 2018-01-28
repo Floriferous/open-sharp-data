@@ -11,7 +11,7 @@ const RadioButton = Radio.Button;
 const RadioGroup = Radio.Group;
 
 const MIN = 10;
-const MAX = 2000;
+const MAX = 10000;
 const STEP = 50;
 
 const setComparison = debounce(func => func(), 500);
