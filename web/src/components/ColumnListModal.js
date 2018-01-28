@@ -17,10 +17,8 @@ export default class ColumnListModal extends Component {
 
   render() {
     return (
-      <div>
-        <Button onClick={this.showModal} size="small">
-          Show mandatory column list
-        </Button>
+      <span>
+        <a onClick={this.showModal}>Show mandatory column list</a>
         <Modal
           title="Basic Modal"
           visible={this.state.visible}
@@ -36,7 +34,7 @@ export default class ColumnListModal extends Component {
             ))}
           </ul>
         </Modal>
-      </div>
+      </span>
     );
   }
 }

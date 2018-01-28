@@ -13,7 +13,7 @@ const Footer = () => (
         in Switzerland - Dataset last updated on Jan 27th 2018
       </small>
     </p>
-    <a href="https://github.com/Floriferous/open-sharp-data">
+    <a href="https://github.com/Floriferous/open-sharp-data" target="_blank">
       <Icon type="github" className="icon" />
     </a>
   </div>
