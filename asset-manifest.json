@@ -1,8 +1,9 @@
 {
-  "main.css": "static/css/main.36872d41.css",
-  "main.css.map": "static/css/main.36872d41.css.map",
-  "main.js": "static/js/main.f719c88c.js",
-  "main.js.map": "static/js/main.f719c88c.js.map",
+  "main.css": "static/css/main.bcbc6a24.css",
+  "main.css.map": "static/css/main.bcbc6a24.css.map",
+  "main.js": "static/js/main.c914c327.js",
+  "main.js.map": "static/js/main.c914c327.js.map",
   "static/media/Sharp_Surveys_Data.csv": "static/media/Sharp_Surveys_Data.8317a7c9.csv",
+  "static/media/Uganda_survey_data.csv": "static/media/Uganda_survey_data.86e4a93f.csv",
   "static/media/sample_survey2.csv": "static/media/sample_survey2.ded25866.csv"
 }
