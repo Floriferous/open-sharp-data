@@ -1,17 +1,28 @@
 import getComparisonData from '../data/dataColumns';
 
-const columnKeys = Object.keys(getComparisonData());
+const comparisonData = getComparisonData();
+
+const columnKeys = Object.keys(comparisonData);
 
 const groupDataInObject = (data) => {
-  console.log('groupDataInObject data:', data);
   const columnLabels = data[0];
   const dataRowCount = data.length - 1; // remove initial row
 
   const cleanData = [];
 
-  columnLabels.forEach((columnLabel, columnIndex) => {
+  const indexes = [];
+  const allKeys = [...columnKeys, 'S0_INFO.coords:lat', 'S0_INFO.coords:lon'];
+
+  allKeys.forEach((key) => {
+    indexes.push(columnLabels.findIndex(columnKey => columnKey === key));
+  });
+
+  indexes.forEach((importantColumnIndex) => {
     data.slice(1).forEach((row, rowIndex) => {
-      cleanData[rowIndex - 1] = { ...cleanData[rowIndex - 1], [columnLabel]: row[columnIndex] };
+      cleanData[rowIndex - 1] = {
+        ...cleanData[rowIndex - 1],
+        [allKeys[importantColumnIndex]]: row[importantColumnIndex],
+      };
     });
   });
 
@@ -62,7 +73,11 @@ const getSum = (data, key) => {
 // };
 
 const summarizeData = (data) => {
+  const t1 = new Date().getTime();
   const cleanData = groupDataInObject(data);
+  const t2 = new Date().getTime();
+  console.log('delta 1: ', (t2 - t1) / 1000, 'seconds');
+
   const columnsToSummarize = [...columnKeys, 'distance'];
 
   const summary = columnsToSummarize.reduce((accumulator, columnLabel) => {
@@ -79,12 +94,14 @@ const summarizeData = (data) => {
         min,
         max,
         average,
-        label:
-          (getComparisonData()[columnLabel] && getComparisonData()[columnLabel].label) ||
-          columnLabel,
+        label: (comparisonData[columnLabel] && comparisonData[columnLabel].label) || columnLabel,
       },
     };
   }, {});
+
+  const t3 = new Date().getTime();
+  console.log('delta 2: ', (t3 - t2) / 1000, 'seconds');
+  console.log('delta total: ', (t3 - t1) / 1000, 'seconds');
 
   return summary;
 };
