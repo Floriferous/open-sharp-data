@@ -12,25 +12,31 @@ const RadioButton = Radio.Button;
 const RadioGroup = Radio.Group;
 
 const ChartController = ({
-  type, setChartType, dataSet, setComparisonDataSet,
+  type,
+  setChartType,
+  dataSet,
+  setComparisonDataSet,
+  showRadiusPicker,
 }) => (
   <div className="chart-controller">
     <RadioGroup onChange={e => setChartType(e.target.value)} value={type} className="chart-type">
       <RadioButton value={ABSOLUTE}>Absolute comparison</RadioButton>
       <RadioButton value={NORMALIZED}>Normalized comparison</RadioButton>
     </RadioGroup>
-    <RadioGroup
+    {/* <RadioGroup
       onChange={e => setComparisonDataSet(e.target.value)}
       value={dataSet}
       className="chart-type"
     >
       <RadioButton value={MAIN_SET}>Main data set</RadioButton>
       <RadioButton value={UGANDA_SET}>Uganda data set</RadioButton>
-    </RadioGroup>
-    <RadiusPicker />
+    </RadioGroup> */}
+    {showRadiusPicker && <RadiusPicker />}
   </div>
 );
 
-ChartController.propTypes = {};
+ChartController.propTypes = {
+  showRadiusPicker: PropTypes.bool.isRequired,
+};
 
 export default connect(({ chart: { type, dataSet } }) => ({ type, dataSet }), chartActions)(ChartController);

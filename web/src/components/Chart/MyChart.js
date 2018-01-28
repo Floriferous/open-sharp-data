@@ -6,6 +6,9 @@ import { HorizontalBar } from 'react-chartjs-2';
 import getComparisonData from '../../data/dataColumns';
 import { NORMALIZED, ALL } from '../../reducers/chart';
 
+const POSITIVE_COLOR = '#1abc9c';
+const NEGATIVE_COLOR = '#c0392b';
+
 const AverageChart = ({
   data, type, dataSet, className, optionalComparisonData, comparison,
 }) => {
@@ -32,7 +35,7 @@ const AverageChart = ({
     .filter(point => point.value !== 0)
     .sort((a, b) => b.value - a.value);
 
-  const colours = mergedData.map(point => (point.value < 0 ? '#e74c3c' : '#2ecc71'));
+  const colours = mergedData.map(point => (point.value < 0 ? NEGATIVE_COLOR : POSITIVE_COLOR));
 
   const chartData = {
     labels: mergedData.map(point => point.label),

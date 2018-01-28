@@ -9,12 +9,13 @@ const DataInfo = ({ data }) => {
   const latitude = Number.parseFloat(data['S0_INFO.coords:lat']);
   return (
     <div className="data-info">
-      <div className="chart-box card">
-        <h2>Your survey compared to the rest</h2>
+      <h2>Your resilience compared to the rest</h2>
+
+      <div className="chart-box">
         <Chart data={data} className="chart" />
       </div>
 
-      {longitude && latitude && <MyMap longitude={longitude} latitude={latitude} />}
+      {!!(longitude && latitude) && <MyMap longitude={longitude} latitude={latitude} />}
     </div>
   );
 };
