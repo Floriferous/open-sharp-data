@@ -10,9 +10,9 @@ const POSITIVE_COLOR = '#1abc9c';
 const NEGATIVE_COLOR = '#c0392b';
 
 const AverageChart = ({
-  data, type, dataSet, className, optionalComparisonData, comparison,
+  data, type, className, optionalComparisonData, comparison,
 }) => {
-  let comparisonData = getComparisonData(dataSet);
+  let comparisonData = getComparisonData();
   if (comparison !== ALL && !!optionalComparisonData) {
     comparisonData = optionalComparisonData;
   }
@@ -67,8 +67,7 @@ const AverageChart = ({
 
 AverageChart.propTypes = {};
 
-export default connect(({ chart: { type, comparison, dataSet } }) => ({
+export default connect(({ chart: { type, comparison } }) => ({
   type,
   comparison,
-  dataSet,
 }))(AverageChart);
