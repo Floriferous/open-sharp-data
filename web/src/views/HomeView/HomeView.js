@@ -10,6 +10,7 @@ const HomeView = props => (
   <section className="home-view">
     <div className="main">
       <h2>Open SHARP Data</h2>
+      <hr />
       <p>
         This is a tool to let you get more insights into the SHARP dataset, we expect you to upload
         a csv file containing 2 (and only 2) rows:

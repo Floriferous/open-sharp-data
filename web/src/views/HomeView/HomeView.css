@@ -23,7 +23,25 @@
   align-items: center;
   flex-direction: row;
   padding: 16px;
+}
+
+.home-view .footer p {
   max-width: unset;
+  margin: 0;
+}
+
+.home-view .footer a {
+  margin-left: 8px;
+}
+
+.home-view .footer a .icon {
+  font-size: 20px;
+  color: #666;
+}
+
+.home-view .footer a:hover .icon {
+  font-size: 20px;
+  color: #4078c0;
 }
 
 .home-view .buttons {
@@ -38,4 +56,13 @@
 
 .home-view ul {
   margin: 0;
+}
+
+.home-view hr {
+  background-color: #d8d8d8;
+  border-width: 0;
+  height: 1px;
+  width: 60%;
+  align-self: center;
+  margin: 16px 0;
 }

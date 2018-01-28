@@ -27,7 +27,7 @@ const RadiusPicker = ({
   <div className="radius-picker">
     <RadioGroup onChange={e => setChartComparison(e.target.value)} value={comparison}>
       <RadioButton value={ALL}>Compare to all</RadioButton>
-      <RadioButton value={BY_DISTANCE}>Compare by distance</RadioButton>
+      <RadioButton value={BY_DISTANCE}>Compare by distance [km]</RadioButton>
     </RadioGroup>
     {comparison === BY_DISTANCE && (
       <div className="slider">
