@@ -10,7 +10,7 @@ import { ALL, BY_DISTANCE } from '../../reducers/chart';
 const RadioButton = Radio.Button;
 const RadioGroup = Radio.Group;
 
-const MIN = 50;
+const MIN = 10;
 const MAX = 2000;
 const STEP = 50;
 

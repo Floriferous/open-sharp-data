@@ -4,7 +4,8 @@ const validateData = (data) => {
   if (!data.length) {
     throw new Error('INVALID_DATA_ARRAY');
   }
-  if (data.length !== 2) {
+  if (data.length < 2) {
+    console.log(data.length);
     throw new Error('INVALID_DATA_SIZE');
   }
 
