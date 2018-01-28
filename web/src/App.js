@@ -14,7 +14,7 @@ const store = createStore();
 
 const App = () => (
   <Provider store={store}>
-    <BrowserRouter history={history}>
+    <BrowserRouter history={history} basename={process.env.PUBLIC_URL}>
       <Switch>
         <Route exact path={HOME_VIEW_LINK} component={HomeView} />
         <Route exact path={DATA_VIEW_LINK} component={DataView} />
