@@ -1,12 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { compose, withProps } from 'recompose';
+import { connect } from 'react-redux';
 
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
 
-const MyMap = ({ longitude, latitude }) => (
+const MyMap = ({ longitude, latitude, coordinates }) => (
   <GoogleMap defaultZoom={6} defaultCenter={{ lat: latitude, lng: longitude }}>
     {longitude && latitude && <Marker position={{ lat: latitude, lng: longitude }} />}
+    {coordinates &&
+      coordinates.length > 0 &&
+      coordinates.map((coordinate, index) => (
+        <Marker
+          key={index}
+          position={coordinate}
+          icon="http://maps.google.com/mapfiles/ms/icons/green-dot.png"
+        />
+      ))}
   </GoogleMap>
 );
 
@@ -22,4 +32,5 @@ export default compose(
   }),
   withScriptjs,
   withGoogleMap,
+  connect(({ chart: { coordinates } }) => ({ coordinates })),
 )(MyMap);

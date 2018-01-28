@@ -14,7 +14,10 @@ export const MAIN_SET = 'MAIN_SET';
 export const UGANDA_SET = 'UGANDA_SET';
 
 const initialState = {
-  type: ABSOLUTE, comparison: ALL, radius: 50, dataSet: MAIN_SET,
+  type: ABSOLUTE,
+  comparison: ALL,
+  radius: 50,
+  dataSet: MAIN_SET,
 };
 
 const chart = (state = initialState, action) => {
@@ -26,7 +29,12 @@ const chart = (state = initialState, action) => {
     case SET_RADIUS:
       return { ...state, radius: action.radius };
     case SET_COMPARISON_DATA:
-      return { ...state, comparisonData: action.data, nearbyCount: action.count };
+      return {
+        ...state,
+        comparisonData: action.data,
+        nearbyCount: action.count,
+        coordinates: action.coordinates,
+      };
     case SET_COMPARISON_DATA_SET:
       return { ...state, dataSet: action.dataSet };
     default:
